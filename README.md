@@ -1,5 +1,4 @@
-ChatGPT
-You said:
+
 # 🏠 Home Expense Manager 
 
 
