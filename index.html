@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Expense Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-wallet"></i> Home Expense Manager</h1>
+            <p class="header-subtitle">Track your expenses with ease</p>
+        </div>
+        <div class="header-decoration">
+            <i class="fas fa-coins decoration-icon"></i>
+            <i class="fas fa-chart-line decoration-icon"></i>
+            <i class="fas fa-piggy-bank decoration-icon"></i>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login-section fade-in">
+            <div class="login-tabs">
+                <button id="show-signin" class="login-tab active">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                <button id="show-signup" class="login-tab">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </div>
+            <div id="login-error" class="error"></div>
+            
+            <div class="login-forms">
+                <form id="login-form" class="login-form">
+                    <div id="signin-fields">
+                        <input type="text" id="login-username" name="login-username" class="login-input" 
+                               placeholder="Username" required>
+                        <input type="password" id="login-password" name="login-password" class="login-input" 
+                               placeholder="Password" required>
+                        <button type="submit" class="login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <form id="signup-form" class="login-form" style="display: none;">
+                    <div id="signup-fields">
+                        <input type="text" id="signup-fullname" name="signup-fullname" class="login-input" 
+                               placeholder="Full Name" required>
+                        <input type="text" id="signup-username" name="signup-username" class="login-input" 
+                               placeholder="Username" required>
+                        <input type="password" id="signup-password" name="signup-password" class="login-input" 
+                               placeholder="Password" required>
+                        <button type="submit" class="login-btn">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </div>
+                </form>
+            </div>
+  </div>
+        <!-- Main App -->
+        <div id="main-app" style="display: none;">
+            <!-- User Info Bar -->
+            <div class="user-info fade-in">
+                <span id="current-user" class="current-user"></span>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Add Expense Section -->
+            <section class="expense-section fade-in">
+                <h2 class="expense-title">
+                    <i class="fas fa-plus-circle"></i> Add New Expense
+                </h2>
+                <form id="expense-form">
+                    <div id="multi-items">
+                        <div class="expense-row">
+                            <input type="number" name="amount" class="expense-input amount" 
+                                   placeholder="Amount (Tk)" min="0.01" step="0.01" required>
+                            <select name="category" class="expense-input category" required>
+                                <option value="" disabled selected>Category</option>
+                                <option value="food">Food</option>
+                                <option value="transport">Transport</option>
+                                <option value="bills">Bills</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="health">Health</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="date" name="date" class="expense-input date" required>
+                            <input type="text" name="description" class="expense-input description" 
+                                   placeholder="Description" maxlength="40">
+                            <button type="button" class="delete-btn remove-row" style="display: none;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="button" id="add-item-btn" class="add-row-btn">
+                            <i class="fas fa-plus"></i> Add Another Item
+                        </button>
+                        <button type="submit" class="login-btn">
+                            <i class="fas fa-save"></i> Save Expenses
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Expense Summary Section -->
+            <section class="summary-section fade-in">
+                <h2 class="expense-title">
+                    <i class="fas fa-chart-pie"></i> Expense Summary
+                </h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Monthly Overview</h3>
+                        <div id="monthly-summary"></div>
+                    </div>
+                    <div class="summary-card">
+                        <h3><i class="fas fa-users"></i> Individual Summary</h3>
+                        <div id="individual-summary"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Expense History -->
+            <section class="expense-section fade-in">
+                <h2 class="expense-title">
+                    <i class="fas fa-history"></i> Expense History
+                </h2>
+                <table class="expense-table">
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenses-table-body"></tbody>
+                </table>
+                <div id="no-expenses" class="text-center mt-2" style="display: none;">
+                    <div class="no-expenses-image"></div>
+                    <p><i class="fas fa-info-circle"></i> No expenses added yet.</p>
+                    <p class="text-secondary">Start adding your expenses above!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+  <script src="main.js"></script>
+</body>
+</html>
